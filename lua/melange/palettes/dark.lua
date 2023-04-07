@@ -1,35 +1,36 @@
 -- stylua: ignore
 return {
   a = {
-    bg      = "#151208",
-    float   = "#221B12",
-    sel     = "#542615",
-    ui      = "#877260",
-    com     = "#8F8780",
-    fg      = "#CCC6C0",
+    bg      = "#100B02",
+    float   = "#1F180B",
+    sel     = "#4D200F",
+    ui      = "#877040",
+    com     = "#978D87",
+    fg      = "#CCC8C4",
   },
   b = {
-    red     = "#DD5050",
-    yellow  = "#DDBB44",
-    -- soft yellow-brown
-    green   = "#AA8760",
+    red     = "#FF7070",
+    yellow  = "#DDBB40",
+    -- soft yellow
+    green   = "#DDCC40",
     -- salmon-brown
     cyan    = "#BB8787",
-    blue    = "#A499BB",
-    magenta = "#FF4099",
+    blue    = "#AAAAEE",
+    magenta = "#FF50BB",
   },
   c = {
-    red     = "#BB4040",
-    yellow  = "#E48740",
+    red     = "#EE5050",
+    -- orange-brown
+    yellow  = "#E48760",
     green   = "#408740",
     -- light gray-brown
-    cyan    = "#BBA487",
-    blue    = "#5070BB",
+    cyan    = "#EEBB99",
+    blue    = "#7787FF",
     magenta = "#BB87A0",
   },
   d = {
-    red     = "#872626",
-    yellow  = "#BB8726",
+    red     = "#874040",
+    yellow  = "#877040",
     green   = "#264026",
     cyan    = "#264040",
     blue    = "#322644",
