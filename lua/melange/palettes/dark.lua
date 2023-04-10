@@ -10,13 +10,13 @@ return {
   },
   b = {
     red     = "#FF7070",
-    yellow  = "#DDBB40",
-    -- soft yellow
-    green   = "#DDCC40",
+    yellow  = "#E8BB26",
+    -- soft olive-green
+    green   = "#D0C800",
     -- salmon-brown
     cyan    = "#BB8787",
-    blue    = "#AAAAEE",
-    magenta = "#FF50BB",
+    blue    = "#9999DD",
+    magenta = "#EE5087",
   },
   c = {
     red     = "#EE5050",
@@ -24,8 +24,8 @@ return {
     yellow  = "#E48760",
     green   = "#408740",
     -- light gray-brown
-    cyan    = "#EEBB99",
-    blue    = "#7787FF",
+    cyan    = "#DDAA88",
+    blue    = "#7080FF",
     magenta = "#BB87A0",
   },
   d = {
