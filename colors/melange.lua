@@ -104,12 +104,12 @@ local highlight_groups = {
 
   ---- :help group-name --------------------------------------
 
-  Comment = { fg = a.com, italic = italic },
+  Comment = { fg = a.com },
   Identifier = { fg = a.fg },
   Function = { fg = b.yellow },
 
   Constant = { fg = c.magenta },
-  String = { fg = b.blue, italic = italic },
+  String = { fg = b.blue },
   Character = { fg = b.blue },
   Number = { fg = b.magenta },
   Boolean = { fg = b.magenta },
@@ -172,10 +172,10 @@ local highlight_groups = {
   -- ['@repeat'] = { },
 
   -- ['@constant'] = { },
-  ['@constant.builtin'] = { fg=c.magenta, italic = italic },
+  ['@constant.builtin'] = { fg = c.magenta },
   ['@constant.macro'] = 'Constant',
   ['@label'] = { fg = b.cyan },
-  ['@symbol'] = { fg = a.fg, italic = italic },
+  ['@symbol'] = { fg = a.fg },
   -- ['@namespace'] = { },
   -- ['@variable'] = { },
   ['@variable.builtin'] = '@symbol',
@@ -302,16 +302,16 @@ for name, attrs in pairs(highlight_groups) do
 end
 
 -- See https://github.com/neovim/neovim/pull/7406
-vim.g.terminal_color_0  = a.float
-vim.g.terminal_color_1  = c.red
-vim.g.terminal_color_2  = c.green
-vim.g.terminal_color_3  = c.yellow
-vim.g.terminal_color_4  = c.blue
-vim.g.terminal_color_5  = c.magenta
-vim.g.terminal_color_6  = c.cyan
-vim.g.terminal_color_7  = a.com
-vim.g.terminal_color_8  = a.ui
-vim.g.terminal_color_9  = b.red
+vim.g.terminal_color_0 = a.float
+vim.g.terminal_color_1 = c.red
+vim.g.terminal_color_2 = c.green
+vim.g.terminal_color_3 = c.yellow
+vim.g.terminal_color_4 = c.blue
+vim.g.terminal_color_5 = c.magenta
+vim.g.terminal_color_6 = c.cyan
+vim.g.terminal_color_7 = a.com
+vim.g.terminal_color_8 = a.ui
+vim.g.terminal_color_9 = b.red
 vim.g.terminal_color_10 = b.green
 vim.g.terminal_color_11 = b.yellow
 vim.g.terminal_color_12 = b.blue
