@@ -21,7 +21,7 @@ return {
   c = {
     red     = "#EE5050",
     -- orange-brown
-    yellow  = "#E49970",
+    yellow  = "#DD8764",
     green   = "#408740",
     -- light gray-brown
     cyan    = "#DDAA87",
