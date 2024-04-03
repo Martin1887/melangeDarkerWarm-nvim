@@ -16,7 +16,7 @@ return {
     -- salmon-brown
     cyan    = "#BB8787",
     blue    = "#9999DD",
-    magenta = "#EE5087",
+    magenta = "#DD7780",
   },
   c = {
     red     = "#EE5050",
