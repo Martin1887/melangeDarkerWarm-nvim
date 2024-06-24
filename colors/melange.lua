@@ -302,7 +302,7 @@ for name, attrs in pairs(highlight_groups) do
 end
 
 -- See https://github.com/neovim/neovim/pull/7406
-vim.g.terminal_color_0 = a.float
+vim.g.terminal_color_0 = a.term
 vim.g.terminal_color_1 = c.red
 vim.g.terminal_color_2 = c.green
 vim.g.terminal_color_3 = c.yellow
