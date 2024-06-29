@@ -6,7 +6,7 @@ return {
     float   = "#1F180B",
     sel     = "#4D200F",
     ui      = "#877040",
-    com     = "#978D87",
+    com     = "#A79D87",
     fg      = "#CCC8C4",
   },
   b = {
