@@ -9,25 +9,25 @@ local melange = {}
 
 melange.normal = {
   a = { bg = grays.com, fg = grays.bg, gui = 'bold' },
-  b = { bg = grays.sel, fg = grays.com },
+  b = { bg = grays.bg, fg = grays.fg },
   c = { bg = grays.float, fg = grays.com },
 }
 
 melange.insert = {
-  a = { bg = normal.blue, fg = grays.bg, gui = 'bold' },
+  a = { bg = dark.blue, fg = grays.fg, gui = 'bold' },
   b = { bg = dark.blue, fg = grays.com },
   c = { bg = grays.float, fg = normal.blue },
 }
 
 melange.command = {
-  a = { bg = normal.yellow, fg = grays.bg, gui = 'bold' },
-  b = { bg = dark.yellow, fg = grays.com },
+  a = { bg = bright.yellow, fg = grays.bg, gui = 'bold' },
+  b = { bg = dark.yellow, fg = grays.fg },
   c = { bg = grays.float, fg = normal.yellow },
 }
 
 melange.visual = {
-  a = { bg = normal.red, fg = grays.bg, gui = 'bold' },
-  b = { bg = dark.red, fg = grays.com },
+  a = { bg = dark.red, fg = grays.fg, gui = 'bold' },
+  b = { bg = grays.sel, fg = grays.com },
   c = { bg = grays.float, fg = normal.red },
 }
 
