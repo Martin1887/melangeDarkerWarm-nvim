@@ -6,7 +6,7 @@ return {
     float   = "#1F180B",
     sel     = "#4D200F",
     ui      = "#877040",
-    com     = "#978D87",
+    com     = "#B0A087",
     fg      = "#CCC8C4",
   },
   b = {
@@ -26,7 +26,7 @@ return {
     green   = "#408740",
     -- light gray-brown
     cyan    = "#DDAA87",
-    blue    = "#7080FF",
+    blue    = "#6070BB",
     magenta = "#BB87A0",
   },
   d = {

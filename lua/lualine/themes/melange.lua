@@ -1,57 +1,52 @@
 local bg = vim.opt.background:get()
-
--- package.loaded['melange/palettes/' .. bg] = nil -- Only needed for development
 local palette = require('melange/palettes/' .. bg)
-
-local a = palette.a -- Grays
-local b = palette.b -- Bright foreground colors
-local c = palette.c -- Foreground colors
-local d = palette.d -- Background colors
+local grays = palette.a
+local bright = palette.b
+local normal = palette.c
+local dark = palette.d
 
 local melange = {}
 
-local insert_blue = '#9999BB'
-
 melange.normal = {
-  a = { bg = a.com, fg = a.bg },
-  b = { bg = a.bg, fg = a.com },
-  c = { bg = a.float, fg = a.com },
+  a = { bg = grays.com, fg = grays.bg, gui = 'bold' },
+  b = { bg = grays.bg, fg = grays.fg },
+  c = { bg = grays.float, fg = grays.com },
 }
 
 melange.insert = {
-  a = { bg = insert_blue, fg = a.bg },
-  b = { bg = a.bg, fg = insert_blue },
-  c = { bg = a.float, fg = insert_blue },
+  a = { bg = dark.blue, fg = grays.fg, gui = 'bold' },
+  b = { bg = dark.blue, fg = grays.com },
+  c = { bg = grays.float, fg = normal.blue },
 }
 
 melange.command = {
-  a = { bg = c.yellow, fg = a.bg },
-  b = { bg = a.bg, fg = c.yellow },
-  c = { bg = a.float, fg = c.yellow },
+  a = { bg = bright.yellow, fg = grays.bg, gui = 'bold' },
+  b = { bg = dark.yellow, fg = grays.fg },
+  c = { bg = grays.float, fg = normal.yellow },
 }
 
 melange.visual = {
-  a = { bg = c.magenta, fg = a.bg },
-  b = { bg = a.bg, fg = c.magenta },
-  c = { bg = a.float, fg = c.magenta },
+  a = { bg = dark.red, fg = grays.fg, gui = 'bold' },
+  b = { bg = grays.sel, fg = grays.com },
+  c = { bg = grays.float, fg = normal.red },
 }
 
 melange.replace = {
-  a = { bg = c.green, fg = a.bg },
-  b = { bg = a.bg, fg = c.green },
-  c = { bg = a.float, fg = c.green },
+  a = { bg = normal.green, fg = grays.bg, gui = 'bold' },
+  b = { bg = dark.green, fg = grays.com },
+  c = { bg = grays.float, fg = normal.green },
 }
 
 melange.terminal = {
-  a = { bg = c.yellow, fg = a.bg },
-  b = { bg = a.bg, fg = c.yellow },
-  c = { bg = a.float, fg = c.yellow },
+  a = { bg = normal.magenta, fg = grays.bg, gui = 'bold' },
+  b = { bg = dark.magenta, fg = grays.com },
+  c = { bg = grays.float, fg = normal.magenta },
 }
 
 melange.inactive = {
-  a = { bg = a.com, fg = a.bg },
-  b = { bg = a.bg, fg = a.com, gui = 'bold' },
-  c = { bg = a.float, fg = a.com },
+  a = { bg = grays.float, fg = grays.com },
+  b = { bg = grays.float, fg = grays.com },
+  c = { bg = grays.float, fg = grays.com },
 }
 
 return melange

@@ -12,34 +12,41 @@ local b = palette.b -- Bright foreground colors
 local c = palette.c -- Foreground colors
 local d = palette.d -- Background colors
 
--- Font variants (TODO Deprecate global variable)
-local bf, it, underline, undercurl, strikethrough
-if vim.g.melange_enable_font_variants ~= 0 then
+local bold, italic, underline, undercurl, strikethrough
+if vim.g.melange_enable_font_variants == true or vim.g.melange_enable_font_variants == nil then
+  --- Enable all font attributes by default
   bold = true
   italic = true
   underline = true
   undercurl = true
   strikethrough = true
+elseif type(vim.g.melange_enable_font_variants) == 'table' then
+  --- Enable only selected font attributes
+  bold = vim.g.melange_enable_font_variants.bold
+  italic = vim.g.melange_enable_font_variants.italic
+  underline = vim.g.melange_enable_font_variants.underline
+  undercurl = vim.g.melange_enable_font_variants.undercurl
+  strikethrough = vim.g.melange_enable_font_variants.strikethrough
 end
 
-local highlight_groups = {
-
+for name, attrs in pairs {
   ---- :help highlight-default -------------------------------
 
   Normal = { fg = a.fg, bg = a.bg },
   NormalFloat = { bg = a.float },
-  -- NormalNC = { },
+  -- NormalNC = {},
 
-  -- Cursor = { },
-  -- lCursor = { },
-  -- CursorIM = { },
-  -- TermCursor = { },
-  -- TermCursorNC = { },
+  -- Cursor = {},
+  -- lCursor = {},
+  -- CursorIM = {},
+  -- TermCursor = {},
+  TermCursorNC = { bg = a.sel },
 
   ColorColumn = { bg = a.float },
   CursorColumn = 'ColorColumn',
   CursorLine = 'ColorColumn',
   VertSplit = { fg = a.ui },
+  WinSeparator = { fg = a.ui },
 
   LineNr = { fg = a.ui },
   CursorLineNr = { fg = c.yellow },
@@ -64,14 +71,14 @@ local highlight_groups = {
   MatchParen = { fg = b.yellow, bg = a.sel, bold = bold },
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
   Substitute = { bg = d.red, bold = bold },
-  -- QuickFixLine = { },
-  -- IncSearch = { },
+  -- QuickFixLine = {},
+  -- IncSearch = {},
   Visual = { bg = a.sel },
-  -- VisualNOS = { },
+  -- VisualNOS = {},
 
   Conceal = { fg = a.com },
   Whitespace = { fg = a.ui },
-  -- EndOfBuffer = { },
+  -- EndOfBuffer = {},
   NonText = 'Whitespace',
   SpecialKey = 'Whitespace',
 
@@ -79,8 +86,8 @@ local highlight_groups = {
   Title = { fg = c.yellow },
   ErrorMsg = { bg = d.red },
   ModeMsg = { fg = a.com },
-  -- MsgArea = { },
-  -- MsgSeparator = { },
+  -- MsgArea = {},
+  -- MsgSeparator = {},
   MoreMsg = { fg = c.green, bold = bold },
   WarningMsg = { fg = c.red },
   Question = 'MoreMsg',
@@ -107,39 +114,38 @@ local highlight_groups = {
   Comment = { fg = a.com },
   Identifier = { fg = a.fg },
   Function = { fg = b.yellow },
-
   Constant = { fg = c.magenta },
   String = { fg = b.blue },
   Character = { fg = b.blue },
   Number = { fg = b.magenta },
-  Boolean = { fg = b.magenta },
-  -- Float = { },
+  Boolean = 'Number',
+  -- Float = {},
 
   Statement = { fg = c.yellow },
-  -- Conditional = { },
-  -- Repeat = { },
-  -- Label = { },
+  -- Conditional = {},
+  -- Repeat = {},
+  -- Label = {},
   Operator = { fg = b.red },
-  -- Keyword = { },
-  -- Exception = { },
+  -- Keyword = {},
+  -- Exception = {},
 
   PreProc = { fg = b.green },
-  -- Include = { },
-  -- Define = { },
-  -- Macro = { },
-  -- PreCondit = { },
+  -- Include = {},
+  -- Define = {},
+  -- Macro = {},
+  -- PreCondit = {},
 
   Type = { fg = c.cyan },
-  -- StorageClass = { },
-  -- Structure = { },
-  -- Typedef = { },
+  -- StorageClass = {},
+  -- Structure = {},
+  -- Typedef = {},
 
   Special = { fg = b.yellow },
-  SpecialChar = { fg = b.cyan },
-  -- Tag = { },
+  -- SpecialChar = {},
+  -- Tag = {},
   Delimiter = { fg = d.yellow },
-  -- SpecialComment = { },
-  -- Debug = { },
+  -- SpecialComment = {},
+  -- Debug = {},
 
   Underlined = { underline = underline },
   Bold = { bold = bold },
@@ -151,74 +157,99 @@ local highlight_groups = {
 
   ---- :help nvim-treesitter-highlights (external plugin) ----
 
-  -- ['@boolean'] = { },
-  -- ['@float'] = { },
-  -- ['@number'] = { },
-  -- ['@character'] = { },
-  -- ['@character.special'] = { },
-  -- ['@string'] = { },
-  -- ['@string.regex'] = { },
+  -- ['@boolean'] = {},
+  -- ['@number'] = {},
+  -- ['@number.float'] = {},
+
+  -- ['@character'] = {},
+  -- ['@character.special'] = {},
+  -- ['@string'] = {},
+  ['@string.documentation'] = { fg = b.blue, nocombine = true },
   ['@string.escape'] = { fg = c.blue },
-  -- ['@string.special'] = { },
+  ['@string.regexp'] = { fg = b.blue },
+  ['@string.special'] = { fg = b.cyan },
+  ['@string.special.symbol'] = { fg = a.fg },
+  ['@string.special.path'] = { fg = c.blue },
+  ['@string.special.url'] = '@string.special.path',
 
-  -- ['@keyword'] = { },
+  -- ['@keyword'] = {},
+  -- ['@keyword.conditional'] = {},
+  -- ['@keyword.conditional.ternary'] = {},
+  -- ['@keyword.coroutine'] = {},
+  -- ['@keyword.debug'] = {},
+  ['@keyword.directive'] = 'PreProc',
+  -- ['@keyword.directive.define'] = {},
+  -- ['@keyword.exception'] = {},
   ['@keyword.function'] = 'PreProc',
-  -- ['@keyword.operator'] = { },
-  -- ['@keyword.return'] = { },
-  -- ['@conditional'] = { },
-  -- ['@conditional.ternary'] = { },
-  -- ['@exception'] = { },
-  -- ['@include'] = { },
-  -- ['@repeat'] = { },
+  ['@keyword.import'] = 'PreProc',
+  -- ['@keyword.operator'] = {},
+  -- ['@keyword.repeat'] = {},
+  -- ['@keyword.return'] = {},
+  -- ['@keyword.storage'] = {},
 
-  -- ['@constant'] = { },
-  ['@constant.builtin'] = { fg = c.magenta },
+  --- NOTE: Queries for these highlight groups are really hacky.
+  --- Inaccurate syntax highlighting is worse than no highlighting at all,
+  ['@constant'] = 'Identifier',
+  ['@constant.builtin'] = 'Constant',
   ['@constant.macro'] = 'Constant',
+  ['@module'] = 'Identifier',
+  ['@module.builtin'] = '@module',
   ['@label'] = { fg = b.cyan },
-  ['@symbol'] = { fg = a.fg },
-  -- ['@namespace'] = { },
-  -- ['@variable'] = { },
-  ['@variable.builtin'] = '@symbol',
+  ['@variable'] = 'Identifier',
+  ['@variable.builtin'] = '@string.special.symbol',
+  -- ['@variable.parameter'] = {},
+  -- ['@variable.member'] = {},
 
-  -- ['@function'] = { },
-  -- ['@function.builtin'] = { },
-  ['@function.macro'] = 'Function',
-  ['@constructor'] = 'Function',
-  -- ['@method'] = { },
-  -- ['@parameter'] = { },
-
-  -- ['@type'] = { },
-  -- ['@type.builtin'] = { },
-  -- ['@type.definition'] = { },
+  -- ['@type'] = {},
+  -- ['@type.builtin'] = {},
+  -- ['@type.definition'] = {},
   ['@type.qualifier'] = 'Statement',
-  ['@storageclass'] = 'Statement',
-  ['@storageclass.lifetime'] = '@label',
-  -- ['@attribute'] = { }, -- unused
-  -- ['@field'] = { },
-  -- ['@property'] = { },
+  -- ['@attribute'] = {},
+  -- ['@property'] = {},
 
-  -- ['@punctuation.bracket'] = { },
+  -- ['@function'] = {},
+  -- ['@function.builtin'] = {},
+  ['@function.macro'] = 'Function',
+  -- ['@function.method'] = {},
+  -- ['@constructor'] = {},
+
+  -- ['@punctuation.bracket'] = {},
   ['@punctuation.delimiter'] = { fg = c.red },
-  -- ['@punctuation.special'] = { },
+  -- ['@punctuation.special'] = {},
 
-  -- ['@text'] = {},
-  ['@text.strong'] = { bold = bold },
-  ['@text.emphasis'] = { italic = italic },
-  ['@text.underline'] = { underline = underline },
-  ['@text.strike'] = { strikethrough = strikethrough },
-  -- ['@text.title'] = {},
-  ['@text.literal'] = { fg = a.com },
-  ['@text.uri'] = { fg = b.blue, underline = underline },
-  -- ['@text.math'] = {},
-  -- ['@text.environment'] = {},
-  ['@text.environment.name'] = 'PreProc',
-  ['@text.reference'] = { fg = c.magenta },
-  -- ['@text.todo'] = {},
-  -- ['@text.note'] = {},
-  -- ['@text.warning'] = {},
-  -- ['@text.danger'] = {},
-  -- ['@text.diff.add'] = {},
-  -- ['@text.diff.delete'] = {},
+  -- ['@comment'] = {},
+  ['@comment.documentation'] = { fg = a.com, nocombine = true },
+  ['@comment.error'] = 'Todo',
+  ['@comment.note'] = 'Todo',
+  ['@comment.todo'] = 'Todo',
+  ['@comment.warning'] = 'Todo',
+
+  -- ['@markup'] = {},
+  ['@markup.heading'] = 'Title',
+  ['@markup.heading.2'] = { fg = b.yellow },
+  ['@markup.heading.3'] = { fg = b.green },
+  ['@markup.heading.4'] = { fg = b.cyan },
+
+  ['@markup.italic'] = { italic = italic },
+  ['@markup.strong'] = { bold = bold },
+  ['@markup.strikethrough'] = { strikethrough = strikethrough },
+  ['@markup.underline'] = { underline = underline },
+
+  ['@markup.quote'] = 'Comment',
+  -- ['@markup.math'] = {}, -- TODO
+  -- ['@markup.environment'] = {},
+  ['@markup.link'] = { underline = underline },
+  -- ['@markup.link.label'] = {},
+  ['@markup.link.url'] = '@string.special.url',
+  ['@markup.raw'] = { fg = a.com },
+  -- ['@markup.raw.block'] = {},
+  ['@markup.list'] = 'Delimiter',
+  -- ['@markup.list.checked'] = {},
+  -- ['@markup.list.unchecked'] = {},
+
+  ['@diff.plus'] = 'DiffAdd',
+  ['@diff.minus'] = 'DiffDelete',
+  ['@diff.delta'] = 'DiffChange',
 
   -- ['@tag'] = {},
   ['@tag.attribute'] = '@label',
@@ -228,33 +259,62 @@ local highlight_groups = {
 
   DiagnosticError = { fg = c.red },
   DiagnosticWarn = { fg = b.yellow },
-  DiagnosticInfo = { fg = b.blue },
-  DiagnosticHint = { fg = b.green },
-  -- DiagnosticVirtualTextError = 'DiagnosticError',
-  -- DiagnosticVirtualTextWarn = { DiagnosticWarn  },
-  -- DiagnosticVirtualTextInfo = { DiagnosticInfo  },
-  -- DiagnosticVirtualTextHint = { DiagnosticHint  },
-  DiagnosticUnderlineError = { undercurl = undercurl },
-  DiagnosticUnderlineWarn = { undercurl = undercurl },
-  DiagnosticUnderlineInfo = { undercurl = undercurl },
-  DiagnosticUnderlineHint = { undercurl = undercurl },
-  -- DiagnosticFloatingError = 'DiagnosticError',
-  -- DiagnosticFloatingWarn = { DiagnosticWarn  },
-  -- DiagnosticFloatingInfo = { DiagnosticInfo  },
-  -- DiagnosticFloatingHint = { DiagnosticHint  },
-  -- DiagnosticSignError = 'DiagnosticError',
-  -- DiagnosticSignWarn = { DiagnosticWarn  },
-  -- DiagnosticSignInfo = { DiagnosticInfo  },
-  -- DiagnosticSignHint = { DiagnosticHint  },
+  DiagnosticInfo = { fg = c.blue },
+  DiagnosticHint = { fg = c.magenta },
+  DiagnosticOk = { fg = c.green },
+  DiagnosticUnderlineError = { undercurl = undercurl, sp = c.red },
+  DiagnosticUnderlineWarn = { undercurl = undercurl, sp = b.yellow },
+  DiagnosticUnderlineInfo = { undercurl = undercurl, sp = c.blue },
+  DiagnosticUnderlineHint = { undercurl = undercurl, sp = c.magenta },
+  DiagnosticUnderlineOk = { undercurl = undercurl, sp = c.green },
+  -- DiagnosticVirtualTextError = {},
+  -- DiagnosticVirtualTextWarn = {},
+  -- DiagnosticVirtualTextInfo = {},
+  -- DiagnosticVirtualTextHint = {},
+  -- DiagnosticVirtualTextOk = {},
+  -- DiagnosticFloatingError = {},
+  -- DiagnosticFloatingWarn = {},
+  -- DiagnosticFloatingInfo = {},
+  -- DiagnosticFloatingHint = {},
+  -- DiagnosticFloatingOk = {},
+  -- DiagnosticSignError = {},
+  -- DiagnosticSignWarn = {},
+  -- DiagnosticSignInfo = {},
+  -- DiagnosticSignHint = {},
+  -- DiagnosticSignOk = {},
+
+  DiagnosticDeprecated = { DiagnosticUnderlineError },
+  DiagnosticUnnecessary = { undercurl = undercurl, sp = a.com },
 
   ---- :help lsp-highlight -----------------------------------
 
-  LspReferenceText = 'Visual',
-  LspReferenceRead = 'Visual',
-  LspReferenceWrite = 'Visual',
+  -- LspReferenceText = 'Visual',
+  -- LspReferenceRead = 'Visual',
+  -- LspReferenceWrite = 'Visual',
+
   -- TODO: lsp-highlight-codelens
 
-  --- :help vimtex-syntax-reference (external plugin) --------
+  ---- :help lsp-semantic-highlight --------------------------
+
+  ['@lsp.mod.GlobalScope'] = { italic = italic },
+  -- ['@lsp.type.class'] = 'Structure',
+  -- ['@lsp.type.comment'] = 'Comment',
+  -- ['@lsp.type.decorator'] = 'Function',
+  -- ['@lsp.type.enum'] = 'Structure',
+  -- ['@lsp.type.enumMember'] = 'Constant',
+  -- ['@lsp.type.function'] = 'Function',
+  -- ['@lsp.type.interface'] = 'Structure',
+  ['@lsp.type.macro'] = {},
+  -- ['@lsp.type.method'] = 'Function',
+  ['@lsp.type.namespace'] = { fg = c.green },
+  ['@lsp.type.parameter'] = { fg = a.fg, bold = bold },
+  -- ['@lsp.type.property'] = 'Identifier',
+  -- ['@lsp.type.struct'] = 'Structure',
+  -- ['@lsp.type.type'] = 'Type',
+  -- ['@lsp.type.typeParameter'] = 'TypeDef',
+  ['@lsp.type.variable'] = 'Identifier',
+
+  ---- :help vimtex-syntax-reference (external plugin) -------
 
   texOptSep = '@punctuation.delimiter',
   texOptEqual = 'Operator',
@@ -268,6 +328,15 @@ local highlight_groups = {
   texMathDelimZone = 'TSPunctDelimiter',
   texMathDelim = 'Delimiter',
   texMathEnvArgName = 'PreProc',
+
+  --- neo-tree highlights  :help neo-tree-highlights ---
+
+  NeoTreeNormal = 'NormalFloat',
+  NeoTreeNormalNC = 'NeoTreeNormal',
+  NeoTreeVertSplit = { bg = a.bg, fg = a.bg },
+  NeoTreeWinSeparator = 'NeoTreeVertSplit',
+
+  NeoTreeCursorLine = { bg = a.sel },
 
   --- netrw: there's no comprehensive list of highlights... --
 
@@ -287,16 +356,16 @@ local highlight_groups = {
   SignifySignChange = 'GitSignsChange',
   SignifySignDelete = 'GitSignsDelete',
 
-  ---- :h indent-blankline-highlights (external plugin) ------
-  IndentBlanklineChar = { fg = a.sel, nocombine = true },
+  ---- :h ibl.highlights (external plugin) -------------------
+  IblIndent = { fg = a.sel, nocombine = true },
+  IblWhitespace = 'IblIndent',
+  IndentBlanklineChar = 'IblIndent', -- Deprecated?
   IndentBlanklineSpaceChar = 'IndentBlanklineChar',
   IndentBlanklineSpaceCharBlankline = 'IndentBlanklineChar',
-}
-
-for name, attrs in pairs(highlight_groups) do
+} do
   if type(attrs) == 'table' then
     vim.api.nvim_set_hl(0, name, attrs)
-  elseif type(attrs) == 'string' then
+  else
     vim.api.nvim_set_hl(0, name, { link = attrs })
   end
 end
