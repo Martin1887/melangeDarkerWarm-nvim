@@ -3,6 +3,7 @@ return {
   a = {
     bg      = "#100B02",
     term    = "#000000",
+    termdir = "#404087",
     float   = "#1F180B",
     sel     = "#4D200F",
     ui      = "#877040",
