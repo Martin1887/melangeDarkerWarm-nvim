@@ -34,6 +34,7 @@ for name, attrs in pairs {
 
   Normal = { fg = a.fg, bg = a.bg },
   NormalFloat = { bg = a.float },
+  NormalHighl = { bg = a.highl },
   -- NormalNC = {},
 
   -- Cursor = {},
@@ -42,7 +43,7 @@ for name, attrs in pairs {
   -- TermCursor = {},
   TermCursorNC = { bg = a.sel },
 
-  ColorColumn = { bg = a.float },
+  ColorColumn = { bg = a.highl },
   CursorColumn = 'ColorColumn',
   CursorLine = 'ColorColumn',
   VertSplit = { fg = a.ui },
@@ -60,13 +61,13 @@ for name, attrs in pairs {
   PmenuSbar = 'Pmenu',
   PmenuThumb = 'PmenuSel',
 
-  StatusLine = 'NormalFloat',
-  StatusLineNC = { fg = a.com, bg = a.float },
-  WildMenu = 'NormalFloat',
+  StatusLine = 'NormalHighl',
+  StatusLineNC = { fg = a.com, bg = a.highl },
+  WildMenu = 'NormalHighl',
 
   TabLine = 'StatusLineNC',
   TabLineFill = 'StatusLine',
-  TabLineSel = { bg = a.float, bold = bold },
+  TabLineSel = { bg = a.highl, bold = bold },
 
   MatchParen = { fg = b.yellow, bg = a.sel, bold = bold },
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
@@ -331,7 +332,7 @@ for name, attrs in pairs {
 
   --- neo-tree highlights  :help neo-tree-highlights ---
 
-  NeoTreeNormal = 'NormalFloat',
+  NeoTreeNormal = 'NormalHighl',
   NeoTreeNormalNC = 'NeoTreeNormal',
   NeoTreeVertSplit = { bg = a.bg, fg = a.bg },
   NeoTreeWinSeparator = 'NeoTreeVertSplit',
