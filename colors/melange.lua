@@ -71,7 +71,7 @@ for name, attrs in pairs {
 
   MatchParen = { fg = b.yellow, bg = a.sel, bold = bold },
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
-  CurSearch = { fg = a.bg, bg = b.yellow, bold = bold },
+  CurSearch = { fg = a.bg, bg = "#BB8726", bold = bold },
   Substitute = { bg = d.red, bold = bold },
   -- QuickFixLine = {},
   -- IncSearch = {},
