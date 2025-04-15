@@ -69,7 +69,7 @@ for name, attrs in pairs {
   TabLineFill = 'StatusLine',
   TabLineSel = { bg = a.highl, bold = bold },
 
-  MatchParen = { fg = a.fg, bg = c.green, bold = bold },
+  MatchParen = { fg = a.highl, bg = b.green, bold = bold },
   Search = { fg = a.bg, bg = d.yellow, bold = bold },
   CurSearch = { fg = a.bg, bg = "#C4B040", bold = bold },
   Substitute = { bg = d.red, bold = bold },
