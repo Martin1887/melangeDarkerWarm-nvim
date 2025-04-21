@@ -308,7 +308,7 @@ for name, attrs in pairs {
   -- ['@lsp.type.interface'] = 'Structure',
   ['@lsp.type.macro'] = {},
   -- ['@lsp.type.method'] = 'Function',
-  ['@lsp.type.namespace'] = { fg = c.green },
+  ['@lsp.type.namespace'] = { fg = b.green },
   ['@lsp.type.parameter'] = { fg = a.fg, bold = bold },
   -- ['@lsp.type.property'] = 'Identifier',
   -- ['@lsp.type.struct'] = 'Structure',
