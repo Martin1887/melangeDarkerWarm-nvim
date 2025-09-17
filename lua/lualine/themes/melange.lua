@@ -20,15 +20,15 @@ melange.insert = {
 }
 
 melange.command = {
-  a = { bg = bright.yellow, fg = grays.bg, gui = 'bold' },
-  b = { bg = dark.yellow, fg = grays.fg },
-  c = { bg = grays.float, fg = normal.yellow },
-}
-
-melange.visual = {
   a = { bg = dark.red, fg = grays.fg, gui = 'bold' },
   b = { bg = grays.sel, fg = grays.com },
   c = { bg = grays.float, fg = normal.red },
+}
+
+melange.visual = {
+  a = { bg = bright.yellow, fg = grays.bg, gui = 'bold' },
+  b = { bg = dark.yellow, fg = grays.fg },
+  c = { bg = grays.float, fg = normal.yellow },
 }
 
 melange.replace = {
