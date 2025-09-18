@@ -6,7 +6,7 @@ return {
     termdir = "#404087",
     float   = "#000000",
     highl   = "#1F180B",
-    sel     = "#573D0F",
+    sel     = "#64400F",
     ui      = "#877040",
     com     = "#B0A087",
     fg      = "#CCC8C4",
