@@ -309,7 +309,7 @@ for name, attrs in pairs {
   ['@lsp.type.macro'] = {},
   -- ['@lsp.type.method'] = 'Function',
   ['@lsp.type.namespace'] = { fg = b.green },
-  ['@lsp.type.parameter'] = { fg = c.yellow, bold = bold },
+  ['@lsp.type.parameter'] = { fg = d.yellow, bold = bold },
   -- ['@lsp.type.property'] = 'Identifier',
   -- ['@lsp.type.struct'] = 'Structure',
   -- ['@lsp.type.type'] = 'Type',
