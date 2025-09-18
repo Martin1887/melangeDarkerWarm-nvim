@@ -20,8 +20,8 @@ melange.insert = {
 }
 
 melange.command = {
-  a = { bg = dark.red, fg = grays.fg, gui = 'bold' },
-  b = { bg = grays.sel, fg = grays.com },
+  a = { bg = bright.cyan, fg = grays.bg, gui = 'bold' },
+  b = { bg = dark.red, fg = grays.com },
   c = { bg = grays.float, fg = normal.red },
 }
 
